@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+    defaultConfig {
+        applicationId "com.rudy.framework"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-annotations:22.2.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    //图片加载
+    compile 'com.facebook.fresco:fresco:0.13.0'
+    compile 'com.facebook.fresco:imagepipeline-okhttp3:0.12.0+'
+    //腾讯bugly管理bug
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    //网络请求框架
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // jackson 解析json
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+    //时间计算
+    compile files('libs/joda-time-2.9.1.jar')
+    //注解方式实现自动在布局中查找相应的视图
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
+}
