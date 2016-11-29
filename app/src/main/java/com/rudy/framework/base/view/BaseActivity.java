@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 
+import com.rudy.framework.FrameWorkApplication;
 import com.rudy.framework.R;
 import com.rudy.framework.base.AppManager;
 import com.rudy.framework.util.SystemBarHelper;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by RudyJun on 2016/11/23.
@@ -45,6 +47,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        RefWatcher refWatcher = FrameWorkApplication.getRefWatcher(this);
+        refWatcher.watch(this);
         AppManager.getAppManager().finishActivity(this);
     }
 }

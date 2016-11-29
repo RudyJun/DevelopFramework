@@ -1,6 +1,7 @@
 package com.rudy.framework;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 
 import com.facebook.cache.disk.DiskCacheConfig;
@@ -11,6 +12,8 @@ import com.rudy.framework.base.Constants;
 import com.rudy.framework.util.HttpClient;
 import com.rudy.framework.util.NetUtil;
 import com.rudy.framework.util.StringUtil;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.io.File;
 
@@ -31,6 +34,8 @@ public class FrameWorkApplication extends Application {
 
     private static int networkType = Constants.NETTYPE_NONE;
 
+    private RefWatcher refWatcher;
+
     /**
      * 返回应用实例
      * @return
@@ -49,6 +54,7 @@ public class FrameWorkApplication extends Application {
         initFresco();
         // 获取当前网络状态
         networkType = NetUtil.getNetWorkType(this);
+        refWatcher = LeakCanary.install(this);
     }
 
 
@@ -86,6 +92,12 @@ public class FrameWorkApplication extends Application {
 
         Fresco.initialize(this, config);
     }
+
+    public static RefWatcher getRefWatcher(Context context) {
+        FrameWorkApplication application = (FrameWorkApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
 
     public String getAppCacheDir() {
         if (StringUtil.isEmpty(appCacheDir)) {

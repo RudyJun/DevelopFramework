@@ -14,15 +14,16 @@ import butterknife.ButterKnife;
  */
 
 public class MainActivity extends BaseActivity {
+
     @BindView(R.id.tvTest)
     TextView tvTest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
     }
-
     @Override
     protected void initViews() {
 
