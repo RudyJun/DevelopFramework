@@ -47,8 +47,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = FrameWorkApplication.getRefWatcher(this);
-        refWatcher.watch(this);
+        if(FrameWorkApplication.getApplication().isDebug()) {
+            RefWatcher refWatcher = FrameWorkApplication.getRefWatcher(this);
+            refWatcher.watch(this);
+        }
         AppManager.getAppManager().finishActivity(this);
     }
 }

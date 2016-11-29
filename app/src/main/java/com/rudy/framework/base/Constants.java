@@ -17,8 +17,8 @@ public interface Constants {
     int NETTYPE_NONE = 0;
     int NETTYPE_LINE = 1;
     int NETTYPE_WIFI = 2;
-    int NETTYPE_3G = 3;
-    int NETTYPE_2G = 4;
+    int NETTYPE_2G = 3;
+    int NETTYPE_3G = 4;
     int NETTYPE_4G = 5;
     String NETWORK_ERROR = "加载失败, 请稍后重试";
     String NO_NETWORK = "当前无可用网络连接, 请检查网络设置";

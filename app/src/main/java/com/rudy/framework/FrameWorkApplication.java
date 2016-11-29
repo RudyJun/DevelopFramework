@@ -36,6 +36,9 @@ public class FrameWorkApplication extends Application {
 
     private RefWatcher refWatcher;
 
+    // 是否是debug模式 // TODO 上线需改为 false
+    private boolean isDebug = true;
+
     /**
      * 返回应用实例
      * @return
@@ -54,7 +57,9 @@ public class FrameWorkApplication extends Application {
         initFresco();
         // 获取当前网络状态
         networkType = NetUtil.getNetWorkType(this);
-        refWatcher = LeakCanary.install(this);
+        if (FrameWorkApplication.getApplication().isDebug()) {
+            refWatcher = LeakCanary.install(this);
+        }
     }
 
 
@@ -96,6 +101,10 @@ public class FrameWorkApplication extends Application {
     public static RefWatcher getRefWatcher(Context context) {
         FrameWorkApplication application = (FrameWorkApplication) context.getApplicationContext();
         return application.refWatcher;
+    }
+
+    public boolean isDebug() {
+        return isDebug;
     }
 
 
