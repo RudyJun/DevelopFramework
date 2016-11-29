@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <!--最浅（出现在顶部或底部）-->
     <color name="topColor">#f3f3f3</color>
+    <color name="imageBackground">#f8fafb</color>
 </resources>

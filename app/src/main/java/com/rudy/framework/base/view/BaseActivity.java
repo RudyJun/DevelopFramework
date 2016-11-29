@@ -13,6 +13,8 @@ import com.rudy.framework.base.AppManager;
 import com.rudy.framework.util.SystemBarHelper;
 import com.squareup.leakcanary.RefWatcher;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by RudyJun on 2016/11/23.
  */
@@ -35,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
+        ButterKnife.bind(this);
         initData();
         initViews();
     }
