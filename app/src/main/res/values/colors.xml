@@ -6,4 +6,5 @@
     <!--最浅（出现在顶部或底部）-->
     <color name="topColor">#f3f3f3</color>
     <color name="imageBackground">#f8fafb</color>
+    <color name="loadingColor">#2B3E51</color>
 </resources>

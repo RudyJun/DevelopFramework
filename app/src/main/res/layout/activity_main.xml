@@ -5,19 +5,4 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     >
-
-<com.rudy.framework.widget.CircleImageView
-    android:id="@+id/ivPhoto"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:scaleType="centerCrop"
-    android:layout_centerInParent="true"
-    />
-
-    <TextView
-        android:id="@+id/tvHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello!"
-        />
 </RelativeLayout>
