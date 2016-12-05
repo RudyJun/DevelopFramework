@@ -5,4 +5,10 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     >
+    <Button
+        android:id="@+id/btScan"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:text="图片浏览"
+        />
 </RelativeLayout>

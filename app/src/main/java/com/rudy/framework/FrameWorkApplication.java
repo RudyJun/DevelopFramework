@@ -8,6 +8,7 @@ import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.rudy.framework.base.Constants;
 import com.rudy.framework.util.HttpClient;
 import com.rudy.framework.util.NetUtil;
@@ -36,6 +37,7 @@ public class FrameWorkApplication extends Application {
 
     private RefWatcher refWatcher;
 
+    public static DisplayImageOptions mNormalImageOptions;
     // 是否是debug模式 // TODO 上线需改为 false
     private boolean isDebug = true;
 

@@ -7,4 +7,5 @@
     <color name="topColor">#f3f3f3</color>
     <color name="imageBackground">#f8fafb</color>
     <color name="loadingColor">#2B3E51</color>
+    <color name="white">#ffffff</color>
 </resources>
