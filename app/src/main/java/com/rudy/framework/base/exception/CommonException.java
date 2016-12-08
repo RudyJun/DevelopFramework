@@ -1,4 +1,4 @@
-package com.yilos.nailstar.base.exception;
+package com.rudy.framework.base.exception;
 
 /**
  * Created by RudyJun on 2016/11/23.

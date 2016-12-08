@@ -1,6 +1,7 @@
 package com.rudy.framework.util;
 
 import android.os.Build;
+import android.util.Log;
 
 import com.rudy.framework.FrameWorkApplication;
 import com.rudy.framework.base.Constants;
@@ -10,6 +11,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -25,6 +28,8 @@ import static android.text.Html.escapeHtml;
  * Created by RudyJun on 2016/11/23.
  */
 public class HttpClient {
+
+    private static String TAG = "HttpClient";
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -63,6 +68,39 @@ public class HttpClient {
         Request request = commonRequestBuilder()
                 .url(url)
                 .build();
+        Response response = okHttpClient.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        String contentType = response.header("Content-Type");
+        if (contentType != null && contentType.contains("application\\json")) {
+            return response.body().string();
+        } else {
+            return response.body().string();
+        }
+    }
+
+    /**
+     * 增加header
+     * @param url
+     * @param headerMap
+     */
+    public static String getJson(String url , Map<String , String> headerMap) throws NetworkDisconnectException, IOException {
+        if (FrameWorkApplication.getApplication().getNetworkType() == Constants.NETTYPE_NONE) {
+            throw new NetworkDisconnectException("Network unavailable");
+        }
+        Set<Map.Entry<String, String>> entries = headerMap.entrySet();
+        Request.Builder builder = commonRequestBuilder();
+        for (Map.Entry<String, String> entry : entries) {
+            builder.addHeader(entry.getKey() , entry.getValue());
+            Log.e(TAG , "key = "+entry.getKey() + "  value = "+entry.getValue());
+        }
+
+        Request request = builder
+                .url(url)
+                .build();
+
         Response response = okHttpClient.newCall(request).execute();
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected code " + response);

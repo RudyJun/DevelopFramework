@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,15 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.rudy.framework.R;
 import com.rudy.framework.util.StringUtil;
 import com.rudy.framework.widget.ImageCacheView;
+import com.rudy.framework.widget.newphotoview.PhotoDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by YCM on 2016/5/15.
+ * Created by RudyJun on 2016/12/8.
  */
-public class PreviewPictureActivity extends BaseActivity implements View.OnClickListener{
+public class PreviewPictureActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static String TAG = PreviewPictureActivity.class.getName();
     public Context mContext;
@@ -84,11 +86,6 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
         tvDownload.setOnClickListener(this);
         loadData();
         findViews();
-    }
-
-    @Override
-    protected void initViews() {
-
     }
 
     private void loadData() {
@@ -175,6 +172,8 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
                 .setControllerListener(new BaseControllerListener<ImageInfo>() {
                     @Override
                     public void onIntermediateImageSet(String id, @Nullable ImageInfo imageInfo) {
+                        iv.getLayoutParams().height = imageInfo.getHeight();
+                        iv.getLayoutParams().width = imageInfo.getWidth();
                         updateViewSize(iv, imageInfo);
                     }
 
@@ -183,6 +182,7 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
                             imageInfo, @Nullable Animatable animatable) {
                         updateViewSize(iv, imageInfo);
                     }
+
                 })
                 .build());
     }
@@ -195,7 +195,6 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
             draweeView.setAspectRatio(aspectRatio);
         }
     }
-
 
 
     private class SamplePagerAdapter extends PagerAdapter {
@@ -217,7 +216,7 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
 //          }
             View view = View.inflate(PreviewPictureActivity.this , R.layout.layout_zoomin_post_pictures_item , null);
 
-            ImageCacheView photoView = (ImageCacheView) view.findViewById(R.id.bigPhoto);
+            PhotoDraweeView photoView = (PhotoDraweeView) view.findViewById(R.id.bigPhoto);
             Log.e(TAG, "currentViewPosition=======>" + currentViewPosition);
             Log.e(TAG, "picture path=======>" + imagePathList.get(currentViewPosition));
 
@@ -230,8 +229,6 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
              */
             String url = imagePathList.get(position).trim();
             photoView.setImageSrc(url);
-            photoView.setAdjustViewBounds(true);
-            setImageController(photoView, url);
 
          /*   if(isLocationPicture){
                 Bitmap bitmap= BitmapFactory.decodeFile(url);
@@ -252,13 +249,14 @@ public class PreviewPictureActivity extends BaseActivity implements View.OnClick
             });*/
 
 
-/*            //监听整个显示区域动作
+     /*       //监听整个显示区域动作
             photoView.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
 
                 @Override
                 public void onViewTap(View arg0, float arg1, float arg2) {
                     ((Activity) mContext).finish();
                 }
+
             });*/
 
             /**

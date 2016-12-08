@@ -18,7 +18,7 @@ public class TaskManager {
 
     private Object lastResult = null;
 
-    private List<Task> taskList = new ArrayList<Task>(8);
+    private List<Task> taskList = new ArrayList<>(8);
 
     public TaskManager next(Task task) {
         taskList.add(task);

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rudy.framework.R;
+import com.rudy.framework.base.presenter.BasePresenter;
 import com.rudy.framework.base.view.BaseActivity;
 import com.rudy.framework.base.view.PreviewPictureActivity;
 
@@ -26,13 +27,19 @@ public class MainActivity extends BaseActivity {
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this ,PreviewPictureActivity.class);
-                intent.putExtra("isFromGrowAlbum" , false);
+                Intent intent = new Intent(MainActivity.this, PreviewPictureActivity.class);
+                intent.putExtra("isFromGrowAlbum", false);
                 startActivity(intent);
             }
         });
     }
+
     @Override
     protected void initViews() {
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }
