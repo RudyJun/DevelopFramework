@@ -8,8 +8,16 @@
     >
     <Button
         android:id="@+id/btScan"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:text="图片浏览"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btQuery"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:text="手机归属地查询"
+        android:layout_weight="1"
         />
 </LinearLayout>

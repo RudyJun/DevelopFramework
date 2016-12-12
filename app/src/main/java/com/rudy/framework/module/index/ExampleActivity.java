@@ -56,6 +56,7 @@ public class ExampleActivity extends BaseActivity<ExamplePresenter> implements I
                     return;
                 }else if(etNumber.getText().toString().length()!=11){
                     showToast("请输入正确的手机号码");
+                    return;
                 }
                 showLoading("");
                 presenter.getPhoneQuery(String.format(RequestUrl.PHONE_QUERY , etNumber.getText().toString()));
@@ -73,7 +74,7 @@ public class ExampleActivity extends BaseActivity<ExamplePresenter> implements I
 
         hideLoading();
 
-        if(queryResult.getRetData() != null) {
+        if (queryResult != null && queryResult.getRetData() != null) {
             tvPhoneNumber.setText(queryResult.getRetData().getPhone());
             tvBelong.setText(queryResult.getRetData().getSupplier());
             tvProvince.setText(queryResult.getRetData().getProvince());

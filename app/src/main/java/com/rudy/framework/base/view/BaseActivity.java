@@ -17,6 +17,7 @@ import com.rudy.framework.base.presenter.BasePresenter;
 import com.rudy.framework.util.SystemBarHelper;
 import com.rudy.framework.widget.LoadingDialog;
 import com.squareup.leakcanary.RefWatcher;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 
@@ -101,6 +102,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if (!isFinishing()) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

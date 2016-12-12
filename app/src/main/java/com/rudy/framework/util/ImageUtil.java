@@ -13,8 +13,10 @@ import com.rudy.framework.FrameWorkApplication;
 
 import java.util.concurrent.Executor;
 /**
+ * 用于下载图片
  * Created by RudyJun on 2016/11/23.
  */
+
 public class ImageUtil {
 
     public static void loadImageASync(String url, final BitmapUse bitmapUse) {
