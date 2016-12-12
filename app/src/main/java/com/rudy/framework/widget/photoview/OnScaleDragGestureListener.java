@@ -1,4 +1,4 @@
-package com.rudy.framework.widget.newphotoview;
+package com.rudy.framework.widget.photoview;
 
 /**
  * ****************************************************************************

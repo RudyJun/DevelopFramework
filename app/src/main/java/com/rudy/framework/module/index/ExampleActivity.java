@@ -40,7 +40,6 @@ public class ExampleActivity extends BaseActivity<ExamplePresenter> implements I
     @BindView(R.id.tvCity)
     TextView tvCity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

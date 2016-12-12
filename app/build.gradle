@@ -9,13 +9,55 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
     }
+
+    productFlavors {
+        yingyongbao {}
+        xiaomi {}
+        baidu {}
+        huawei {}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('./sign/develop_framework.jks')
+            storePassword 'rudyjun'
+            keyAlias 'develop_framework'
+            keyPassword 'rudyjun'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            //开始输出
+            def file = output.outputFile
+            def newName = "";
+            def channelName = variant.productFlavors[0].name
+            def versionName = android.defaultConfig.versionName
+
+            if (output.zipAlign) {
+                newName = "develop" + "-" + channelName + "-" + versionName + "-release.apk"
+            } else {
+                newName = "develop" + "-" + channelName + "-" + versionName + "-release-unalign.apk"
+            }
+            output.outputFile = new File(file.parent, newName)
+        }
+    }
+
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
@@ -53,8 +95,9 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
     //Tab滑动
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'
+    //友盟统计，可用作多渠道打包
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

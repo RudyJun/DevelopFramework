@@ -24,7 +24,7 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.rudy.framework.R;
 import com.rudy.framework.util.StringUtil;
 import com.rudy.framework.widget.ImageCacheView;
-import com.rudy.framework.widget.newphotoview.PhotoDraweeView;
+import com.rudy.framework.widget.photoview.PhotoDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
