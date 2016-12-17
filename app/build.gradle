@@ -106,4 +106,5 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.android.support:design:23.0.1'
 }

@@ -10,7 +10,6 @@ public class CollectionUtil {
         return collection == null || collection.isEmpty();
     }
 
-
     public static boolean isEmpty(Map map) {
         return null == map || map.isEmpty();
     }

@@ -2,14 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal|center_vertical"
-    >
+    android:layout_gravity="center_horizontal|center_vertical">
 
     <com.rudy.framework.widget.photoview.PhotoDraweeView
         android:id="@+id/bigPhoto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|center_vertical"
-        />
+        android:layout_gravity="center_horizontal|center_vertical" />
 
 </FrameLayout>

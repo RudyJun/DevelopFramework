@@ -1,9 +1,15 @@
 package com.rudy.framework.base;
 
+import android.os.Environment;
+
 /**
  * Created by RudyJun on 2016/11/23.
  */
 public interface Constants {
+
+    //图片下载目录
+    String DOWNLOAD_PHOTO_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()
+            + "/rudy/development/pictures/";
 
     String EMPTY_STRING = "";
     String UNDERLINE = "_";
@@ -12,6 +18,7 @@ public interface Constants {
     String IS_FIRST_INTO_VERSION = "isFirstIntoVersion";
     String SDCARD_NAME = "sdcard_name";
     String SDCARD_PATH = "sdcard_path";
+    String PNG_SUFFIX = ".png";
 
     // 网络类型
     int NETTYPE_NONE = 0;

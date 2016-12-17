@@ -3,5 +3,5 @@
     <!-- 沉浸式状态栏使用 -->
     <item name="statusbar_view" type="id" />
     <item name="translucent_view" type="id" />
-    <item name="photoTag" type="id"/>
+    <item name="photoTag" type="id" />
 </resources>

@@ -38,7 +38,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         // 默认主色调为白色, 如果是6.0或者是miui6、flyme4以上, 设置状态栏文字为黑色, 否则给状态栏着色
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) || (SystemBarHelper.isFlyme4Later() || SystemBarHelper.isMIUI6Later())) {
             SystemBarHelper.setStatusBarDarkMode(this);
-            SystemBarHelper.tintStatusBar(this, getResources().getColor(R.color.loadingColor), 0f);
+            SystemBarHelper.tintStatusBar(this, getResources().getColor(R.color.topColor), 0f);
         } else {
             SystemBarHelper.tintStatusBar(this, Color.WHITE);
         }
@@ -65,6 +65,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     /**
      * 加载中提示框
+     *
      * @param tip
      */
     @Override
@@ -74,6 +75,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     /**
      * 加载中提示框，可设置是否能被用户关闭
+     *
      * @param tip
      */
     @Override
@@ -117,11 +119,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     protected void onDestroy() {
-        if(presenter != null){
+        if (presenter != null) {
             presenter.onDestory();
         }
         super.onDestroy();
-        if(FrameWorkApplication.getApplication().isDebug()) {
+        if (FrameWorkApplication.getApplication().isDebug()) {
             RefWatcher refWatcher = FrameWorkApplication.getRefWatcher(this);
             refWatcher.watch(this);
         }

@@ -67,7 +67,6 @@ public class ImageCacheView extends SimpleDraweeView {
                 .setFadeDuration(100)
                 .setBackground(ContextCompat.getDrawable(getContext(), backgroundColor))
                 .setPlaceholderImage(ContextCompat.getDrawable(getContext(), R.mipmap.image_loading));
-
         return builder;
     }
 
