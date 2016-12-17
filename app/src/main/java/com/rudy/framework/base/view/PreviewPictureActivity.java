@@ -3,6 +3,7 @@ package com.rudy.framework.base.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
@@ -243,6 +244,8 @@ public class PreviewPictureActivity extends AppCompatActivity implements View.On
                         .toString();
                 String filePath = FileUtil.saveBitMap(bitmap, Constants.DOWNLOAD_PHOTO_PATH, fileName);
                 if (!StringUtil.isEmpty(filePath)) {
+                    //主动扫描文件，以便更新图库
+                    MediaScannerConnection.scanFile(PreviewPictureActivity.this, new String[]{filePath}, null, null);
                     Toast.makeText(PreviewPictureActivity.this, "图片已保存至" + filePath, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(PreviewPictureActivity.this, "图片保存失败", Toast.LENGTH_SHORT).show();
