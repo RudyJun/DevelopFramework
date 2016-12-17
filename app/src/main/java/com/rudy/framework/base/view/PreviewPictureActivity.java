@@ -28,6 +28,7 @@ import com.rudy.framework.widget.photoview.HackyViewPager;
 import com.rudy.framework.widget.photoview.OnPhotoTapListener;
 import com.rudy.framework.widget.photoview.OnViewTapListener;
 import com.rudy.framework.widget.photoview.PhotoDraweeView;
+import com.rudy.framework.widget.photoview.ZoomOutPageTransformer;
 
 import java.io.Serializable;
 import java.util.List;
@@ -100,6 +101,7 @@ public class PreviewPictureActivity extends AppCompatActivity implements View.On
         mViewPager = (HackyViewPager) findViewById(R.id.image_view_vp);
         mTextViewCurrentViewPosition = (TextView) findViewById(R.id.image_which);
         mViewPager.setAdapter(new SamplePagerAdapter());
+        mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
 
         /**
@@ -113,7 +115,9 @@ public class PreviewPictureActivity extends AppCompatActivity implements View.On
             mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                 @Override
-                public void onPageSelected(int position) {//当前选择的是哪个图片
+                public void onPageSelected(int position) {
+                    PhotoDraweeView lastDraweeView = (PhotoDraweeView) mViewPager.findViewWithTag(currentViewPosition);
+                    lastDraweeView.setImageSrc(imagePathList.get(currentViewPosition));
                     //更新当前图片浏览的位置
                     currentViewPosition = position;
                     mTextViewCurrentViewPosition.setText((currentViewPosition + 1) + "/" + imagePathList.size());
@@ -166,6 +170,7 @@ public class PreviewPictureActivity extends AppCompatActivity implements View.On
             return imagePathList.size();
         }
 
+
         @Override
         public View instantiateItem(ViewGroup container, int position) {
 
@@ -180,6 +185,7 @@ public class PreviewPictureActivity extends AppCompatActivity implements View.On
 
             String url = imagePathList.get(position);
             photoView.setImageSrc(url);
+            photoView.setTag(position);
 
             //监听图片区域动作
             photoView.setOnPhotoTapListener(new OnPhotoTapListener() {
