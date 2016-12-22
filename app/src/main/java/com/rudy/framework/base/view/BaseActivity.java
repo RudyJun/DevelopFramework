@@ -28,6 +28,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     private LoadingDialog loadingDialog;
     protected T presenter;
+    protected String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

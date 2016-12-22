@@ -4,7 +4,7 @@ import com.rudy.framework.base.exception.NetworkDisconnectException;
 import com.rudy.framework.base.presenter.BasePresenter;
 import com.rudy.framework.module.index.service.ExampleService;
 import com.rudy.framework.module.index.service.entity.PhoneQuery;
-import com.rudy.framework.module.index.view.IExamplerView;
+import com.rudy.framework.module.index.view.inter.IExamplerView;
 import com.rudy.framework.util.TaskManager;
 
 import java.io.IOException;

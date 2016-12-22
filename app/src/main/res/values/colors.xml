@@ -6,6 +6,8 @@
     <!--最浅（出现在顶部或底部）-->
     <color name="topColor">#2B3E51</color>
     <color name="imageBackground">#f8fafb</color>
+    <color name="dividerColor">#f3f3f3</color>
+    <color name="orange">#F15D4D</color>
     <color name="loadingColor">#2B3E51</color>
     <color name="ringColor">#f3f3f3</color>
     <color name="white">#ffffff</color>

@@ -1,4 +1,4 @@
-package com.rudy.framework.module.index;
+package com.rudy.framework.module.index.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +11,7 @@ import com.rudy.framework.base.config.RequestUrl;
 import com.rudy.framework.base.view.BaseActivity;
 import com.rudy.framework.module.index.presenter.ExamplePresenter;
 import com.rudy.framework.module.index.service.entity.PhoneQuery;
-import com.rudy.framework.module.index.view.IExamplerView;
+import com.rudy.framework.module.index.view.inter.IExamplerView;
 import com.rudy.framework.util.StringUtil;
 
 import butterknife.BindView;

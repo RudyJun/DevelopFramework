@@ -1,4 +1,4 @@
-package com.rudy.framework.module.index.view;
+package com.rudy.framework.module.index.view.inter;
 
 import com.rudy.framework.base.view.IView;
 import com.rudy.framework.module.index.service.entity.PhoneQuery;

@@ -38,7 +38,7 @@
 
         <activity android:name=".base.view.PreviewPictureActivity" />
 
-        <activity android:name=".module.index.ExampleActivity" />
+        <activity android:name=".module.index.view.ExampleActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"
