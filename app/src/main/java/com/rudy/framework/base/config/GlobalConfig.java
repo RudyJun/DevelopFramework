@@ -5,6 +5,6 @@ package com.rudy.framework.base.config;
  */
 
 public interface GlobalConfig {
-    //腾讯bugly APPKEY
+    //腾讯bugly APPID
     String BUGLY_APPID = "ed977d066a";
 }
