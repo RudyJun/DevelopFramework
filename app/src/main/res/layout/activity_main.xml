@@ -29,24 +29,4 @@
         custom:tl_textSelectColor="@color/orange"
         custom:tl_textUnselectColor="#afafaf"
         custom:tl_textsize="11sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btScan"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="图片浏览" />
-
-        <Button
-            android:id="@+id/btQuery"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="手机归属地查询" />
-    </LinearLayout>
 </LinearLayout>
