@@ -298,7 +298,6 @@ public final class CommonUtil {
             return null;
         }
 
-        // TODO 部分机型getRunningAppProcesses返回的为null, 后续需要研究, 荣耀 ATH-AL00
         for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
                 .getRunningAppProcesses()) {
             if (appProcess.pid == pid) {
