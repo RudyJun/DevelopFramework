@@ -41,12 +41,6 @@
 
         <activity android:name=".module.index.view.ExampleActivity" />
 
-        <receiver android:name=".receiver.NetworkReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="584921c507fe652ee4001a52" />

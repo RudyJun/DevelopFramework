@@ -1,7 +1,12 @@
 package com.rudy.framework.base.view;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -13,7 +18,9 @@ import com.github.ybq.android.spinkit.style.FadingCircle;
 import com.rudy.framework.FrameWorkApplication;
 import com.rudy.framework.R;
 import com.rudy.framework.base.AppManager;
+import com.rudy.framework.base.Constants;
 import com.rudy.framework.base.presenter.BasePresenter;
+import com.rudy.framework.util.NetUtil;
 import com.rudy.framework.util.SystemBarHelper;
 import com.rudy.framework.widget.LoadingDialog;
 import com.squareup.leakcanary.RefWatcher;
@@ -29,6 +36,20 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     private LoadingDialog loadingDialog;
     protected T presenter;
     protected String TAG = getClass().getSimpleName();
+    private static int state = -1;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        //当网络断开时，此广播接受到两次，为避免重复提示，将这次网络状态与上次的对比，不同的话
+        //再进行提示，即相同网络只提示一次
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // 网络变化
+            if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+                netWorkChanged();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,11 +131,25 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onResume() {
         super.onResume();
+        registReceiver();
         MobclickAgent.onResume(this);
+    }
+
+    private void registReceiver() {
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, mFilter);
+    }
+
+    private void unRegistReceiver() {
+        if (null != receiver) {
+            unregisterReceiver(receiver);
+        }
     }
 
     public void onPause() {
         super.onPause();
+        unRegistReceiver();
         MobclickAgent.onPause(this);
     }
 
@@ -129,5 +164,40 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             refWatcher.watch(this);
         }
         AppManager.getAppManager().finishActivity(this);
+    }
+
+    private void netWorkChanged() {
+        FrameWorkApplication.getApplication().setNetworkType(NetUtil.getNetWorkType(this));
+        int networkType = FrameWorkApplication.getApplication().getNetworkType();
+        if (FrameWorkApplication.getApplication().isDebug() && networkType != state) {
+            String netWorkState = "";
+            switch (networkType) {
+                case Constants.NETTYPE_NONE:
+                    netWorkState = "当前网络连接不可用";
+                    break;
+
+                case Constants.NETTYPE_2G:
+                    netWorkState = "当前网络连接为2G";
+                    break;
+
+                case Constants.NETTYPE_3G:
+                    netWorkState = "当前网络连接为3G";
+                    break;
+
+                case Constants.NETTYPE_4G:
+                    netWorkState = "当前网络连接为4G";
+                    break;
+
+                case Constants.NETTYPE_WIFI:
+                    netWorkState = "当前网络连接为WIFI";
+                    break;
+
+                default:
+                    break;
+            }
+            Toast.makeText(this, netWorkState, Toast.LENGTH_SHORT).show();
+
+        }
+        state = networkType;
     }
 }

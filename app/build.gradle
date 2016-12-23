@@ -107,4 +107,6 @@ dependencies {
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.android.support:design:23.0.1'
+    //RecyclerView的Adapter,实现加载更多，加载动画，headerView ，footerView，事件点击等功能
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.6.9'
 }

@@ -33,5 +33,4 @@ public interface Constants {
     // 字节数
     int KB = 1024;
     int MB = 1024 * KB;
-    String ACTION_NETWORK_CHANGED = "netWorkChanged";
 }
