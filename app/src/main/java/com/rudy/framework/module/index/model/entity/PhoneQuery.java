@@ -1,4 +1,4 @@
-package com.rudy.framework.module.index.service.entity;
+package com.rudy.framework.module.index.model.entity;
 
 
 /**

@@ -1,9 +1,9 @@
-package com.rudy.framework.module.index.service;
+package com.rudy.framework.module.index.model;
 
 import android.util.Log;
 
 import com.rudy.framework.base.exception.NetworkDisconnectException;
-import com.rudy.framework.module.index.service.entity.PhoneQuery;
+import com.rudy.framework.module.index.model.entity.PhoneQuery;
 import com.rudy.framework.util.HttpClient;
 import com.rudy.framework.util.JsonUtil;
 

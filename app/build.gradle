@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+//        为了优化apk大小，只支持中文
+        resConfigs "zh"
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }
@@ -38,12 +40,14 @@ android {
 
     buildTypes {
         release {
+            zipAlignEnabled true
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
         debug {
+            zipAlignEnabled true
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

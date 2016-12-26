@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.rudy.framework.R;
 import com.rudy.framework.base.config.RequestUrl;
 import com.rudy.framework.base.view.BaseActivity;
+import com.rudy.framework.module.index.model.entity.PhoneQuery;
 import com.rudy.framework.module.index.presenter.ExamplePresenter;
-import com.rudy.framework.module.index.service.entity.PhoneQuery;
 import com.rudy.framework.module.index.view.inter.IExamplerView;
 import com.rudy.framework.util.StringUtil;
 
