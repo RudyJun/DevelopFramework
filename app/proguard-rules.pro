@@ -58,11 +58,11 @@
 -dontwarn okhttp3.**
 -dontwarn javax.annotation.**
 -dontwarn com.android.volley.toolbox.**
-#
-##友盟统计
-#-keepclassmembers class * {
-#   public <init> (org.json.JSONObject);
-#}
+
+#友盟统计
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
 
 
 #腾讯bugly
