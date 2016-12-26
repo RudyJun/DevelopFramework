@@ -89,8 +89,8 @@ dependencies {
     compile 'com.tencent.bugly:crashreport:latest.release'
     //网络请求框架
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    // jackson 解析json
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+    // 阿里巴巴的fastjson 解析json
+    compile 'com.alibaba:fastjson:1.1.55.android'
     //时间计算
     compile files('libs/joda-time-2.9.1.jar')
     //注解方式实现自动在布局中查找相应的视图

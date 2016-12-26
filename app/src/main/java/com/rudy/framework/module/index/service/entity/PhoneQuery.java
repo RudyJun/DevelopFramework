@@ -1,12 +1,10 @@
 package com.rudy.framework.module.index.service.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by RudyJun on 2016/12/8.
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class PhoneQuery {
 
     private int errNum;
