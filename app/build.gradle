@@ -10,6 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
     }
 
     productFlavors {
@@ -35,14 +38,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
         debug {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
@@ -91,8 +94,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     // 阿里巴巴的fastjson 解析json
     compile 'com.alibaba:fastjson:1.1.55.android'
-    //时间计算
-    compile files('libs/joda-time-2.9.1.jar')
     //注解方式实现自动在布局中查找相应的视图
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

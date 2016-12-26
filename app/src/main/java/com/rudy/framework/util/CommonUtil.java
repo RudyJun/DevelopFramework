@@ -18,18 +18,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import java.lang.reflect.InvocationTargetException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -133,36 +124,6 @@ public final class CommonUtil {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    public static String format(Date date) {
-        long delta = new Date().getTime() - date.getTime();
-        if (delta < 1L * ONE_MINUTE) {
-            long seconds = toSeconds(delta);
-            return (seconds <= 0 ? 1 : seconds) + ONE_SECOND_AGO;
-        }
-        if (delta < 45L * ONE_MINUTE) {
-            long minutes = toMinutes(delta);
-            return (minutes <= 0 ? 1 : minutes) + ONE_MINUTE_AGO;
-        }
-        if (delta < 24L * ONE_HOUR) {
-            long hours = toHours(delta);
-            return (hours <= 0 ? 1 : hours) + ONE_HOUR_AGO;
-        }
-        if (delta < 48L * ONE_HOUR) {
-            return "昨天";
-        }
-        if (delta < 30L * ONE_DAY) {
-            long days = toDays(delta);
-            return (days <= 0 ? 1 : days) + ONE_DAY_AGO;
-        }
-        if (delta < 12L * 4L * ONE_WEEK) {
-            long months = toMonths(delta);
-            return (months <= 0 ? 1 : months) + ONE_MONTH_AGO;
-        } else {
-            long years = toYears(delta);
-            return (years <= 0 ? 1 : years) + ONE_YEAR_AGO;
         }
     }
 
@@ -350,71 +311,4 @@ public final class CommonUtil {
         }
         return province;
     }
-
-
-    /**
-     * @param dateTime
-     */
-    public static String formatOffsetDays(DateTime dateTime) {
-        return formatOffsetDays(new LocalDateTime().toDateTime(), dateTime);
-    }
-
-    public static String formatOffsetDays(DateTime beginTime, DateTime endTime) {
-        if (null == endTime) {
-            return "";
-        }
-        int days = Days.daysBetween(new LocalDate(beginTime.getMillis()), new LocalDate(endTime.getMillis())).getDays();
-        if (days == 0){
-            DateTimeFormatter timeFormatter = DateTimeFormat.forPattern("HH:mm");
-            return new LocalDateTime(endTime.getMillis()).toString(timeFormatter);
-        } else if (days == 1){
-            return "明天";
-        } else if (days == 2){
-            return "后天";
-        } else if (days > 2){
-            int weekIndex = new LocalDateTime(endTime.getMillis()).getDayOfWeek();
-            switch (weekIndex){
-                case DateTimeConstants.MONDAY:
-                    return "周一";
-                case DateTimeConstants.TUESDAY:
-                    return "周二";
-                case DateTimeConstants.WEDNESDAY:
-                    return "周三";
-                case DateTimeConstants.THURSDAY:
-                    return "周四";
-                case DateTimeConstants.FRIDAY:
-                    return "周五";
-                case DateTimeConstants.SATURDAY:
-                    return "周六";
-                case DateTimeConstants.SUNDAY:
-                    return "周日";
-            }
-        }
-        return "";
-    }
-
-    private static long toSeconds(long date) {
-        return date / 1000L;
-    }
-
-    private static long toMinutes(long date) {
-        return toSeconds(date) / 60L;
-    }
-
-    private static long toHours(long date) {
-        return toMinutes(date) / 60L;
-    }
-
-    private static long toDays(long date) {
-        return toHours(date) / 24L;
-    }
-
-    private static long toMonths(long date) {
-        return toDays(date) / 30L;
-    }
-
-    private static long toYears(long date) {
-        return toMonths(date) / 365L;
-    }
-
 }

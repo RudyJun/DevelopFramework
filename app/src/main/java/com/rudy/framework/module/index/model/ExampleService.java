@@ -18,14 +18,14 @@ public class ExampleService {
 
     public PhoneQuery getPhoneQueryResult(String url) throws IOException, NetworkDisconnectException {
 
-        HashMap<String , String> hashMap = new HashMap<>();
-        hashMap.put("apikey" , "563d6ca2b02ce6756724c8f0d89a4b8d");
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("apikey", "563d6ca2b02ce6756724c8f0d89a4b8d");
 
         String result = HttpClient.getJson(url, hashMap);
-        Log.e("ExampleService" , result);
+        Log.e("ExampleService", result);
 
-        PhoneQuery phoneQuery = JsonUtil.json2obj(result , PhoneQuery.class);
+        PhoneQuery phoneQuery = JsonUtil.json2obj(result, PhoneQuery.class);
         return phoneQuery;
     }
-    
+
 }

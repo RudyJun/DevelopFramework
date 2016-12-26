@@ -1,9 +1,5 @@
 package com.rudy.framework.util;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Seconds;
-import org.joda.time.Years;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -205,19 +201,4 @@ public class DateTimeUtils {
     private static long toYears(long date) {
         return toMonths(date) / 365L;
     }
-
-
-    public static int offsetSeconds(DateTime beginTime, DateTime endTime){
-        return Seconds.secondsBetween(beginTime, endTime).getSeconds();
-    }
-
-    public static int offsetDays(DateTime beginTime, DateTime endTime){
-        return Days.daysBetween(beginTime, endTime).getDays();
-    }
-
-    public static int offsetYears(DateTime beginTime, DateTime endTime){
-        return Years.yearsBetween(beginTime, endTime).getYears();
-    }
-
-
 }
