@@ -59,7 +59,7 @@ public class ExampleActivity extends BaseActivity<ExamplePresenter> implements I
                     return;
                 }
                 showLoading("");
-                presenter.getPhoneQuery(String.format(RequestUrl.PHONE_QUERY , etNumber.getText().toString()));
+                presenter.getPhoneQuery(RequestUrl.PHONE_QUERY, etNumber.getText().toString());
             }
         });
     }

@@ -22,27 +22,32 @@ public class ExamplePresenter extends BasePresenter<IExamplerView> {
         service = new ExampleService();
     }
 
-    public void getPhoneQuery(final String url){
+    public void getPhoneQuery(final String url, final String phone) {
         TaskManager.BackgroundTask phoneQueryBackgroundTask = new TaskManager.BackgroundTask() {
             @Override
             public Object doWork(Object data) throws NetworkDisconnectException, IOException {
-                return service.getPhoneQueryResult(url);
+                try {
+                    return service.getPhoneQueryResult(url, phone);
+                } catch (NetworkDisconnectException | IOException e) {
+                    hideLoading();
+                    throw e;
+                }
             }
         };
 
         TaskManager.UITask<PhoneQuery> uiTask = new TaskManager.UITask<PhoneQuery>() {
             @Override
-            public Object doWork(PhoneQuery data) throws NetworkDisconnectException, IOException {
-                if(view != null){
+            public Object doWork(PhoneQuery data) {
+                if (view != null) {
                     view.getPhoneQueryResult(data);
                 }
                 return null;
             }
         };
 
-         new TaskManager()
-                 .next(phoneQueryBackgroundTask)
-                 .next(uiTask)
-                 .start();
+        new TaskManager()
+                .next(phoneQueryBackgroundTask)
+                .next(uiTask)
+                .start();
     }
 }

@@ -11,8 +11,8 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.rudy.framework.base.Constants;
 import com.rudy.framework.base.config.GlobalConfig;
 import com.rudy.framework.util.CommonUtil;
-import com.rudy.framework.util.HttpClient;
 import com.rudy.framework.util.NetUtil;
+import com.rudy.framework.util.RetrofitClient;
 import com.rudy.framework.util.StringUtil;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -112,7 +112,7 @@ public class FrameWorkApplication extends Application {
                 .setMaxCacheSize(maxCacheSize).build();
 
         ImagePipelineConfig config = OkHttpImagePipelineConfigFactory
-                .newBuilder(this, HttpClient.getOkHttpClient())
+                .newBuilder(this, RetrofitClient.getOkHttpClient())
                 .setMainDiskCacheConfig(cacheConfig)
                 .setDownsampleEnabled(true) // 设置支持PNG图片resize, 否则加载png图片超卡
                 .build();

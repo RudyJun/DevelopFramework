@@ -7,6 +7,8 @@ import android.os.Environment;
  */
 public interface Constants {
 
+    String BASE_URL = "";
+
     //图片下载目录
     String DOWNLOAD_PHOTO_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()
             + "/rudy/development/pictures/";
