@@ -35,12 +35,8 @@ public class HttpClient {
 
     private static OkHttpClient okHttpClient;
 
-//    private static final String serviceBaseUrl = Constants.YILOS_API_SERVER;
 
     static {
-//        okHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
-//        okHttpClient.setReadTimeout(10, TimeUnit.SECONDS);
-
         File sdcache = FileUtil.getCacheDir();
         int cacheSize = 10 * 1024 * 1024;
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
